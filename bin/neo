@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+require 'rubygems'
+
+# add lib to load path
+$LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__) + '/../lib'))
+
+require 'neophyte'
+
+Neophyte::Runner.start(ARGV)
