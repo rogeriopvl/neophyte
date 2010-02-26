@@ -6,7 +6,7 @@ task :default => :package
 $spec = eval(File.read('neophyte.gemspec'))
 
 def package(ext='')
-  "builds/neophyte-#{$spec.version}" + ext
+  "pkg/neophyte-#{$spec.version}" + ext
 end
 
 desc 'Build packages'
@@ -19,7 +19,7 @@ end
 
 directory 'builds/'
 
-file package('.gem') => %w[builds/ neophyte.gemspec] + $spec.files do |f|
+file package('.gem') => %w[pkg/ neophyte.gemspec] + $spec.files do |f|
   sh "gem build neophyte.gemspec"
   mv File.basename(f.name), f.name
 end
