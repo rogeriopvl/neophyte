@@ -16,11 +16,19 @@ module Neophyte
     
     # parses the input command
     def parse_command
-      puts @argv.inspect
+      if @argv.length == 1
+        if @argv[0] == 'help'
+          help
+        end
+      end
     end
     
     def start
-      puts "has landed!"
+      # start needed stuff
+    end
+    
+    def help
+      puts "Help info"
     end
     
   end
