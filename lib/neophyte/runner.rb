@@ -1,3 +1,5 @@
+require 'optparse'
+
 module Neophyte
   
   class Runner
@@ -20,6 +22,8 @@ module Neophyte
         if @argv[0] == 'help'
           help
         end
+      else
+        usage
       end
     end
     
@@ -31,6 +35,21 @@ module Neophyte
       puts "Help info"
     end
     
+    def usage
+      puts "Usage: neo <command>"
+      puts "Example: neo create myproject"
+      puts "Help: neo --help"
+    end
+    
+    protected
+  
+    def parsed_options?
+      opts = OptionParser.new
+      opts.on('-v', '--version') { version; exit 0 }
+      opts.on('-h', '--help') { help; exit 0 }
+      opts.on('-V', '--verbose') { @options.verbose = true }
+    end
+  
   end
   
 end
