@@ -14,7 +14,7 @@ task :package => %w[.gem].map {|e| package(e)}
 
 desc 'Build and install as local gem'
 task :install => package('.gem') do
-  sh "gem install #{package('.gem')}"
+  sh "sudo gem install #{package('.gem')}"
 end
 
 directory 'builds/'

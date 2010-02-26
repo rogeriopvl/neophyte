@@ -16,7 +16,11 @@ module Neophyte
     
     # parses the input command
     def parse_command
-      @argv.inspect
+      puts @argv.inspect
+    end
+    
+    def start
+      puts "has landed!"
     end
     
   end
