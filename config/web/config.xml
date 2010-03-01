@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<files>
+		<file>index</file>
+	</files>
+	<folders>
+		<folder>
+			<name>css</name>
+			<files>
+				<file>main.js</file>
+				<file>reset.css</file>
+			</files>
+		</folder>
+		<folder>
+			<name>js</name>
+			<files>
+				<file>main.js</file>
+			</files>
+		</folder>
+		<folder>
+			<name>img</name>
+			<files/>
+		</folder>
+	</folders>
+</project>

@@ -1,4 +1,5 @@
 require 'cmdparse'
+require 'yaml'
 require 'fileutils'
 
 module Neophyte
@@ -8,6 +9,7 @@ module Neophyte
     # for now...
     VALID_TYPES = %w(web)
     VALID_LANGUAGES = %w(html php)
+    VALID_DOCTYPES = %w(xhtml10strict xhtml10trans html5 html4strict html4trans)
     
     def initialize
       @cmd = CmdParse::CommandParser.new(true, true)
@@ -16,12 +18,16 @@ module Neophyte
       
       generate_commands
     end
+
+    # start the argument parsing
     
     def start
       @cmd.parse
     end
     
     protected
+    
+    # generates all available commands with CmdParse
     
     def generate_commands
       
@@ -36,14 +42,19 @@ module Neophyte
         opt.on('-t', '--type TYPE',
           'Create project files of type TYPE') { |type| @type = type }
         opt.on('-l', '--language LANGUAGE',
-          'Create main project files with the LANGUAGE extension') { |language| @language = language }
+          'Create main project files with the LANGUAGE extension'
+          ) { |language| @language = language }
+        opt.on('-d', '--doctype DOCTYPE',
+          'Create main project markup files with chosen DOCTYPE. Only for web projects'
+          ) { |doctype| @doctype = doctype }
       end
       
       create.set_execution_block do |args|
         
-        # should this be the desired behavior? Maybe give exit if not valid
+        # should this be the desired behavior? Maybe exit if not valid
         @language = VALID_LANGUAGES[0] unless VALID_LANGUAGES.include?(@language)
         @type = VALID_TYPES[0] unless VALID_TYPES.include?(@type)
+        @doctype = VALID_DOCTYPES[0] unless VALID_DOCTYPES.include?(@doctype)
         
         puts "Type: #{@type}"
         puts "Main Language: #{@language}"
@@ -55,8 +66,25 @@ module Neophyte
       @cmd.add_command(CmdParse::VersionCommand.new)
     end
     
+    # creates the project directory structure
+    
     def create
-      # TODO
+      project = read_config_file()
+      #FileUtils.mkdir()
+      project['project']['folders'].each do |f|
+        puts f['name']
+      end
+      
+    end
+    
+    private 
+    
+    # reads the yaml config file and returns
+    # the yaml object.
+    
+    def read_config_file
+      config_path = File.expand_path(File.dirname(__FILE__)+"/../../")
+      YAML.load_file("#{config_path}/config/#{@type}/config.yaml")
     end
   
   end

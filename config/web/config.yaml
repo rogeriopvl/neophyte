@@ -1,0 +1,13 @@
+--- 
+project: 
+  files: 
+    - index
+  folders:  
+    - name: css
+      files:  
+        - main.js
+        - reset.css
+    - name: js
+      files: 
+        - main.js
+    - name: img
