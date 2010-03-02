@@ -7,7 +7,7 @@ The project is only in the beginning but you'll find usage examples bellow to gi
 
 ## Usage
 ### Default web project
-	neo myproject
+	neo create myproject
 
 This will generate the following file structure on the current directory:
 	
