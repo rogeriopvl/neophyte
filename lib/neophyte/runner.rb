@@ -58,7 +58,7 @@ module Neophyte
         
         puts "Type: #{@type}"
         puts "Main Language: #{@language}"
-        self.create
+        self.create(args[0])
       end
       
       @cmd.add_command(create)
@@ -68,11 +68,12 @@ module Neophyte
     
     # creates the project directory structure
     
-    def create
+    def create(project_name)
       project = read_config_file()
-      #FileUtils.mkdir()
-      project['project']['folders'].each do |f|
-        puts f['name']
+      FileUtils.mkdir(project_name)
+      project['project']['folders'].each do |folder|
+        FileUtils.mkdir_p("#{project_name}/#{folder['name']}")
+        f['files'].each do ||
       end
       
     end
