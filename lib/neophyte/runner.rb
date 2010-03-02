@@ -71,9 +71,22 @@ module Neophyte
     def create(project_name)
       project = read_config_file()
       FileUtils.mkdir(project_name)
+      
+      if project['project']['files']
+        project['project']['files'].each do |file|
+          FileUtils.touch("#{project_name}/#{file}.#{@language}")
+        end
+      end
+      
       project['project']['folders'].each do |folder|
         FileUtils.mkdir_p("#{project_name}/#{folder['name']}")
-        f['files'].each do ||
+        
+        if folder['files']
+          folder['files'].each do |file|
+            FileUtils.touch("#{project_name}/#{folder['name']}/#{file}")
+          end
+        end
+        
       end
       
     end
